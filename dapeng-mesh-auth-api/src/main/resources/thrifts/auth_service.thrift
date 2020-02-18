@@ -11,7 +11,7 @@ service MeshAuthService {
 # dapeng-mesh鉴权接口
 ## 业务描述
     api调用鉴权支持
-    详情见:[dapeng-mesh鉴权方案](https://github.com/dapeng-soa/dapeng-soa/wiki/dapeng-mesh%E9%89%B4%E6%9D%83%E6%96%B9%E6%A1%88)
+    详情见:https://github.com/dapeng-soa/dapeng-soa/wiki/dapeng-mesh%E9%89%B4%E6%9D%83%E6%96%B9%E6%A1%88
 ## 接口依赖
     无
 ## 边界异常说明
@@ -35,4 +35,4 @@ service MeshAuthService {
 */
          void checkGateWayAuth(1:auth_request.CheckGateWayAuthRequest request)
 
-}
+}(group="meshAuth")
