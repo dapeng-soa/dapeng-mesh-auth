@@ -1,12 +1,4 @@
-# dapeng-mesh-auth
-[dapeng-mesh](https://github.com/dapeng-soa/dapeng-mesh) 鉴权服务默认实现
-启用dapeng-mesh的鉴权时必须启动此服务
-鉴权服务参考文档:[dapeng mesh鉴权方案](https://github.com/dapeng-soa/dapeng-soa/wiki/dapeng-mesh%E9%89%B4%E6%9D%83%E6%96%B9%E6%A1%88)
-
-## 数据库准备
-```sql
-CREATE DATABASE dapeng_mesh_db;
-
+USE dapeng_mesh_db;
 CREATE TABLE `api_key_info`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `api_key` varchar(100) CHARACTER SET utf8mb4  NOT NULL COMMENT 'apiKey',
@@ -24,44 +16,9 @@ CREATE TABLE `api_key_info`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `api_key_unique`(`api_key`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COMMENT = '网关apiKey信息表' ;
-```
 
-## 初始化apiKey信息
-
-> 仅供测试的数据⚠️ ⚠️ ⚠️请在测试后删除
-```sql
+# test init
 INSERT INTO `api_key_info` (`id`, `api_key`, `password`, `ips`, `timeout`, `validated`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`, `notes`, `biz`)
 VALUES
 (1, '210ed3cf9a0ea07ae04e781fe424c087', '210ed3cf9a0ea07ae04e781fe424c087', '*', 60, 0, 0, '2020-02-19 10:07:56', '2020-02-19 10:07:56', 0, 0, 'api_key,password=md5(dapeng,32)', 'test_biz');
-```
-
-## 编写docker-compose文件
-
-> dapengMeshAuth.yml
-```
-version: '2.2'
-services:
-  dapengMeshAuth:
-    container_name: dapengMeshAuth
-    image: dapengsoa/dapeng-mesh-auth:latest
-    restart: on-failure:3
-    environment:
-    - soa_zookeeper_host=${hostIp}:2181
-    - host_ip=${hostIp}
-    - TZ=CST-8
-    - LANG=zh_CN.UTF-8
-    - DB_MESH_URL=jdbc:mysql://${hostIp}:3306/dapeng_mesh_db?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
-    - DB_MESH_USER=root
-    - DB_MESH_PASSWD=123456
-    volumes:
-    - "~/data/logs/dapeng-mesh-auth:/dapeng-container/logs"
-```
-> 注意将${hostIp}换成您的自己的ip地址
-
-## 启动鉴权服务:
-```
-docker-compose -f dapengMeshAuth.yml up -d
-```
-## 启动dapeng-mesh
-见[dapeng-mesh](https://github.com/dapeng-soa/dapeng-mesh)
 
