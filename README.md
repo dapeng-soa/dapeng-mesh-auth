@@ -1,6 +1,8 @@
 # dapeng-mesh-auth
 [dapeng-mesh](https://github.com/dapeng-soa/dapeng-mesh) 鉴权服务默认实现
-启用dapeng-mesh的鉴权时必须启动此服务
+
+> 启用dapeng-mesh的鉴权时必须启动此服务
+
 鉴权服务参考文档:[dapeng mesh鉴权方案](https://github.com/dapeng-soa/dapeng-soa/wiki/dapeng-mesh%E9%89%B4%E6%9D%83%E6%96%B9%E6%A1%88)
 
 ## 数据库准备
@@ -56,7 +58,7 @@ services:
     volumes:
     - "~/data/logs/dapeng-mesh-auth:/dapeng-container/logs"
 ```
-> 注意将${hostIp}换成您的自己的ip地址
+> 注意将${hostIp}换成您自己的ip地址
 
 ## 启动鉴权服务:
 ```
