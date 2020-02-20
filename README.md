@@ -49,6 +49,7 @@ services:
     restart: on-failure:3
     environment:
     - soa_zookeeper_host=${hostIp}:2181
+    - soa_monitor_enable=false
     - host_ip=${hostIp}
     - TZ=CST-8
     - LANG=zh_CN.UTF-8
