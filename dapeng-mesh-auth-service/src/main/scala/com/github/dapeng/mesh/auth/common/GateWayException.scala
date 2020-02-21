@@ -27,7 +27,7 @@ object GateWayException {
   def CheckIpsError() = new GateWayException(s"${bizTag}003", "认证失败，非法请求")
 
   // 时效不符合
-  def CheckTimeOutError() = new GateWayException(s"${bizTag}004", "Api网关请求超时")
+  def CheckTimeOutError() = new GateWayException(s"${bizTag}004", "请求时间戳失效")
 
   // APIKEY被禁用
   def ApiKeyDisabled() = new GateWayException(s"${bizTag}005", "认证失败，非法请求")
